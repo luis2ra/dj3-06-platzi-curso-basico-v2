@@ -29,5 +29,6 @@ urlpatterns = [
     path('ordered-integers-json/', local_views.challenge2),
     path('hi/<str:name>/<int:age>/', local_views.say_hi),
     # posts app
-    path('posts/', posts_views.list_posts),
+    path('posts-initial/', posts_views.list_posts),
+    path('posts/', posts_views.list_posts_with_templates),
 ]

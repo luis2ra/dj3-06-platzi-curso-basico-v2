@@ -8,22 +8,31 @@ from datetime import datetime
 
 posts = [
     {
-        'name': 'Mont Black',
-        'user': 'Luis Altuve',
+        'title': 'Mont Black',
+        'user': {
+            'name': 'Luis Altuve',
+            'age': 27
+        },
         'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        'picture': 'https://picsum.photos/200/200/?image=1036'
+        'photo': 'https://picsum.photos/200/200/?image=1036'
     },
     {
-        'name': 'Mountain',
-        'user': 'Luis Alfonso',
+        'title': 'Mountain',
+        'user': {
+            'name': 'Luis Alfonso',
+            'age': 16
+        },
         'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        'picture': 'https://picsum.photos/200/200/?image=1000'
+        'photo': 'https://picsum.photos/200/200/?image=1000'
     },
     {
-        'name': 'Sea',
-        'user': 'Pedro Perez',
+        'title': 'Sea',
+        'user': {
+            'name': 'Pedro Perez',
+            'age': 22
+        },
         'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        'picture': 'https://picsum.photos/200/200/?image=700'
+        'photo': 'https://picsum.photos/200/200/?image=700'
     },
 ]
 
@@ -33,8 +42,13 @@ def list_posts(request):
     content = []
     for post in posts:
         content.append('''
-            <p><strong>{name}</strong></p>
+            <p><strong>{title}</strong></p>
             <p><small>{user} - <i>{timestamp}</i></small></p>
-            <figure><img src="{picture}"/></figure>
+            <figure><img src="{photo}"/></figure>
         '''.format(**post))
     return HttpResponse('<br>'.join(content))
+
+
+def list_posts_with_templates(request):
+    '''List existing posts using templates.'''
+    return render(request, 'feed.html', context={'posts': posts})
