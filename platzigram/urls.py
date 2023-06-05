@@ -14,17 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from platzigram import views
+from platzigram import views as local_views
+from posts import views as posts_views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('test/', views.hello_world),
-    path('now/', views.show_current_time),
-    path('request-review/', views.review_objetct_request),
-    path('ordered-integers/', views.challenge1),
-    path('ordered-integers-json/', views.challenge2),
-    path('hi/<str:name>/<int:age>/', views.say_hi)
+    path('test/', local_views.hello_world),
+    path('now/', local_views.show_current_time),
+    path('request-review/', local_views.review_objetct_request),
+    path('ordered-integers/', local_views.challenge1),
+    path('ordered-integers-json/', local_views.challenge2),
+    path('hi/<str:name>/<int:age>/', local_views.say_hi),
+    # posts app
+    path('posts/', posts_views.list_posts),
 ]
